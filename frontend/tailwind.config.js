@@ -26,7 +26,7 @@ module.exports = {
           600: "#FF9BBB", // login and logout
           700: "#00FFFF",
           800: "#00FF00",
-          900: "#0000FF",
+          900: "#002211", // 网站背景
         },
         // purple: {
         //   100: '#F4F4FF',
