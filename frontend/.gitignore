@@ -39,4 +39,29 @@ next-env.d.ts
 # contentlayer
 .contentlayer
 
+# next
+.next
 
+# IDE
+.idea
+.vscode
+
+# editorconfig
+.editorconfig
+
+# prettier
+.prettierrc.js
+.prettierrc.cjs
+.prettierrc.yaml
+.prettierrc.yml
+.prettierrc.json
+.prettierrc.json5
+.prettierignore
+
+# eslint
+.eslintrc.js
+.eslintrc.cjs
+.eslintrc.yaml
+.eslintrc.yml
+.eslintrc.json
+.eslintrc.json5

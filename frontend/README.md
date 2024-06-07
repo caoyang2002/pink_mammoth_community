@@ -1,6 +1,10 @@
+# 运行
+
 ```bash
 pnpm dev
 ```
+
+# 配置
 
 # Free React / Next.js landing page template
 
