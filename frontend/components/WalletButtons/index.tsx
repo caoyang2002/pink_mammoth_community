@@ -1,23 +1,22 @@
-"use client";
+'use client'
 
-import GoogleLogo from "../GoogleLogo";
-import useEphemeralKeyPair from "@/hooks/useEphemeralKeyPair";
-import { useKeylessAccount } from "@/context/KeylessAccountContext";
-import { collapseAddress } from "@/utils/address";
-import { toast } from "sonner";
+import GoogleLogo from '../../app/static/GoogleLogo'
+import useEphemeralKeyPair from '@/hooks/useEphemeralKeyPair'
+import { useKeylessAccount } from '@/context/KeylessAccountContext'
+import { collapseAddress } from '@/utils/address'
+// import { toast } from 'sonner'
 
 const buttonStyles =
-  "nes-btn flex items-center justify-center md:gap-4 py-2 flex-nowrap whitespace-nowrap";
-
+  'nes-btn flex items-center justify-center md:gap-4 py-2 flex-nowrap whitespace-nowrap'
 export default function WalletButtons() {
   if (!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
-    throw new Error("Google Client ID is not set in env");
+    throw new Error('Google Client ID is not set in env')
   }
 
-  const { keylessAccount, setKeylessAccount } = useKeylessAccount();
-  const ephemeralKeyPair = useEphemeralKeyPair();
+  const { keylessAccount, setKeylessAccount } = useKeylessAccount()
+  const ephemeralKeyPair = useEphemeralKeyPair()
 
-  const redirectUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+  const redirectUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
   const searchParams = new URLSearchParams({
     /**
      * Replace with your own client ID
@@ -29,25 +28,25 @@ export default function WalletButtons() {
      * derive the keyless account.
      */
     redirect_uri:
-      typeof window !== "undefined"
+      typeof window !== 'undefined'
         ? `${window.location.origin}/callback`
-        : (process.env.NODE_ENV === "development"
-            ? "http://localhost:3000"
-            : process.env.NEXT_PUBLIC_VERCEL_URL) + "/callback",
+        : (process.env.NODE_ENV === 'development'
+            ? 'http://localhost:3000'
+            : process.env.NEXT_PUBLIC_VERCEL_URL) + '/callback',
     /**
      * This uses the OpenID Connect implicit flow to return an id_token. This is recommended
      * for SPAs (single-page applications) as it does not require a backend server.
      */
-    response_type: "id_token",
-    scope: "openid email profile",
+    response_type: 'id_token',
+    scope: 'openid email profile',
     nonce: ephemeralKeyPair.nonce,
-  });
-  redirectUrl.search = searchParams.toString();
+  })
+  redirectUrl.search = searchParams.toString()
 
   const disconnect = () => {
-    setKeylessAccount(null);
-    toast.success("Successfully disconnected account");
-  };
+    setKeylessAccount(null)
+    // toast.success('Successfully disconnected account')
+  }
 
   if (keylessAccount) {
     return (
@@ -63,7 +62,7 @@ export default function WalletButtons() {
           </span>
         </button>
       </div>
-    );
+    )
   }
 
   return (
@@ -75,5 +74,5 @@ export default function WalletButtons() {
         </button>
       </a>
     </div>
-  );
+  )
 }

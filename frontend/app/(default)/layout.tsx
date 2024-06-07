@@ -7,13 +7,9 @@ import 'aos/dist/aos.css'
 
 import PageIllustration from '@/components/page-illustration'
 import Footer from '@/components/ui/footer'
-
-export default function DefaultLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {  
-
+import { PropsWithChildren } from 'react'
+import { KeylessAccountProvider } from '@/context/KeylessAccountContext'
+export default function RootLayout({ children }: PropsWithChildren) {
   useEffect(() => {
     AOS.init({
       once: true,
@@ -26,11 +22,10 @@ export default function DefaultLayout({
   return (
     <>
       <main className="grow">
+        {/* <PageIllustration /> */}
 
-        <PageIllustration />
-
-        {children}
-
+        <KeylessAccountProvider>{children}</KeylessAccountProvider>
+        {/* {children} */}
       </main>
 
       <Footer />
