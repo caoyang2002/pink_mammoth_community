@@ -1,14 +1,19 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
-    "./app/**/*.{js,ts,jsx,tsx}",
-    "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
+    "./src/app/**/*.{js,ts,jsx,tsx}",
+    "./src/pages/**/*.{js,ts,jsx,tsx}",
+    "./src/components/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
     extend: {
       colors: {
+        text:{
+test: "#fff",
+        },
+       
         gray: {
+      
           // 100: "#EBF1F5",
           // 200: "#D9E3EA",
           // 300: "#C5D2DC",
@@ -21,7 +26,7 @@ module.exports = {
           100: "#FF0000",
           200: "#FFFF00",
           300: "#00FF00",
-          400: "#FFFFFF",
+          400: "#777777",
           500: "#FF00FF",
           600: "#FF9BBB", // login and logout
           700: "#00FFFF",
@@ -43,7 +48,7 @@ module.exports = {
           100: "#FF0000",
           200: "#FFFF00",
           300: "#00FF00",
-          400: "#FFFFFF",
+          400: "#777777",
           500: "#FF00FF",
           600: "#FF9BBB", // login and logout
           700: "#00FFFF",
@@ -95,4 +100,5 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/forms")],
+
 };
