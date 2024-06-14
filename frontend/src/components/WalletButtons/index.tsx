@@ -82,7 +82,7 @@ export default function WalletButtons() {
       <a href={redirectUrl.toString()} className="hover:no-underline">
         <button className={buttonStyles}>
           <GoogleLogo />
-          <span className={`${kongtext.className} text-purple-600`}>
+          <span className={`${kongtext.className} text-pink-600`}>
             Sign in with Google
           </span>
         </button>

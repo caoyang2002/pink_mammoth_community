@@ -5,7 +5,7 @@ import { getAptosClient } from '@/src/utils/aptosClient'
 import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
 import Header from './body/Header'
 import Footer from './body/Footer'
-import { Body } from './Body'
+import Main from './body/Main'
 
 const aptosClient = getAptosClient()
 
@@ -70,16 +70,17 @@ export function Connected() {
   console.log('现在应该可以看到加载的内容了吧。。。')
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       {/* <h1>{keylessAccount?.accountAddress.toString()}</h1> */}
       {/* <div className="nes-container with-title"> */}
       {/* <p className="title">Connected</p> */}
       {/* <p className="title">{keylessAccount?.accountAddress.toString()}</p> */}
       {/* </div> */}
       {/* <Body /> */}
+      {/* <Main /> */}
       {/* <Footer /> */}
-      {/* <Header />
 
+      <Header />
       <div className="flex flex-col gap-3 p-3 justify-center items-center">
         {isLoading ? (
           <div className="nes-container with-title">
@@ -98,8 +99,8 @@ export function Connected() {
         )}
       </div>
 
-      <Body />
-      <Footer /> */}
+      <Main />
+      <Footer />
     </>
   )
 }

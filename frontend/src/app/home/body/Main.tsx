@@ -1,5 +1,4 @@
 'use client'
-import Image from 'next/image'
 import Start from './comp/Start'
 import Tips from './comp/Tips'
 import Features from './comp/Features'

@@ -22,7 +22,6 @@ export default function Header() {
         >
           <p style={{ fontWeight: 'bold' }}>Pink Mammoth Community</p>
         </a>
-        <a className="text-text-test">fdsfds</a>
         <div className="flex items-center justify-end grow">
           <WalletButtons />
         </div>
