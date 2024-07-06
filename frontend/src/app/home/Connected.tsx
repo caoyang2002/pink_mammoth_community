@@ -67,19 +67,9 @@ export function Connected() {
     return () => clearInterval(interval)
   }, [])
 
-  console.log('现在应该可以看到加载的内容了吧。。。')
+  // console.log('现在应该可以看到加载的内容了吧。。。')
   return (
     <>
-      {/* <Header /> */}
-      {/* <h1>{keylessAccount?.accountAddress.toString()}</h1> */}
-      {/* <div className="nes-container with-title"> */}
-      {/* <p className="title">Connected</p> */}
-      {/* <p className="title">{keylessAccount?.accountAddress.toString()}</p> */}
-      {/* </div> */}
-      {/* <Body /> */}
-      {/* <Main /> */}
-      {/* <Footer /> */}
-
       <Header />
       <div className="flex flex-col gap-3 p-3 justify-center items-center">
         {isLoading ? (
@@ -98,8 +88,7 @@ export function Connected() {
           </div>
         )}
       </div>
-
-      <Main />
+      {/* <Main /> */}
       <Footer />
     </>
   )

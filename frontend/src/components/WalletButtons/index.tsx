@@ -7,19 +7,21 @@ import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
 // import { toast } from 'sonner'
 import localFont from 'next/font/local'
 
-const kongtext = localFont({
+const pixtext = localFont({
   src: './../../public/fonts/kongtext.ttf',
   variable: '--font-kongtext',
 })
 
 const buttonStyles =
   'nes-btn flex items-center justify-center md:gap-4 py-2 flex-nowrap whitespace-nowrap'
+
 export default function WalletButtons() {
   if (!process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID) {
     throw new Error('Google Client ID is not set in env')
   }
 
   const { keylessAccount, setKeylessAccount } = useKeylessAccount()
+
   const ephemeralKeyPair = useEphemeralKeyPair()
 
   const redirectUrl = new URL('https://accounts.google.com/o/oauth2/v2/auth')
@@ -56,8 +58,17 @@ export default function WalletButtons() {
     // toast.success('Successfully disconnected account')
   }
 
+  // 如果有 address
   if (keylessAccount) {
-    console.log('aptos address: ', keylessAccount?.accountAddress.toString())
+    console.log('aptos address: ', keylessAccount.accountAddress.toString())
+    // address string
+    var addressStr = keylessAccount.accountAddress.toString()
+    const preMaxLength = 4 // 你可以根据需要调整这个长度
+    const shortAddressStr =
+      addressStr.substring(0, preMaxLength) +
+      '...' +
+      addressStr.substring(addressStr.length - preMaxLength, addressStr.length)
+
     return (
       <div className="flex items-center justify-center m-auto sm:m-0 sm:px-4 ">
         <button
@@ -68,21 +79,22 @@ export default function WalletButtons() {
           <GoogleLogo />
           <span
             title={keylessAccount.accountAddress.toString()}
-            className={`${kongtext.className} text-purple-600`}
+            className={`${pixtext.className} text-xs text-white`}
           >
-            {keylessAccount.accountAddress.toString()}
+            {shortAddressStr}
           </span>
         </button>
       </div>
     )
   }
 
+  // 如果没有 address
   return (
     <div className="flex items-center justify-center m-auto sm:m-0 sm:px-4">
       <a href={redirectUrl.toString()} className="hover:no-underline">
         <button className={buttonStyles}>
           <GoogleLogo />
-          <span className={`${kongtext.className} text-pink-600`}>
+          <span className={`${pixtext.className} text-xs text-white`}>
             Sign in with Google
           </span>
         </button>

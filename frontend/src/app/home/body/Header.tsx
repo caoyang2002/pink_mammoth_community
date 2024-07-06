@@ -2,8 +2,8 @@
 import Link from 'next/link'
 import WalletButtons from '@/src/components/WalletButtons'
 import PinkMammothLogo from '@/src/static/PinkMammothLogo'
-import '@/src/app/styles/additional-styles/theme.css'
-import '@/src/app/styles/style.css'
+// import '@/src/app/styles/additional-styles/theme.css'
+// import '@/src/app/styles/style.css'
 
 // 顶部导航栏
 export default function Header() {
@@ -15,13 +15,15 @@ export default function Header() {
             <PinkMammothLogo />
           </Link>{' '}
         </div>
+
         <a
-          href="#"
+          href="/learning"
           style={{ textDecoration: 'none' }}
-          className="text-gray-700 hover:text-pink-600 transition duration-150 ease-in-out"
+          className="text-white text-xs hover:text-pink-600 transition duration-150 ease-in-out"
         >
-          <p style={{ fontWeight: 'bold' }}>Pink Mammoth Community</p>
+          <p>学习</p>
         </a>
+
         <div className="flex items-center justify-end grow">
           <WalletButtons />
         </div>
