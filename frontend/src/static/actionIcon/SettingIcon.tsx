@@ -4,7 +4,7 @@ const SettingIcon: React.FC = () => {
       width="24"
       height="24"
       viewBox="0 0 24 24"
-      fill="#FFF"
+      fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"
       className="mr-2 h-5 w-5"
     >

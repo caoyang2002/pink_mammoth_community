@@ -8,6 +8,7 @@ import Setting from './Setting'
 import React, { useEffect, useState } from 'react'
 // import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { SyntheticEvent } from 'react'
+import Account from './Account'
 
 function Wallet() {
   // const [isOpen, setIsOpen] = useState(false)
@@ -45,6 +46,7 @@ function Wallet() {
         <div className="flex flex-col rounded bg-black p-1">
           <WalletSelector />
           <CopyAddress />
+          <Account />
           <Setting />
         </div>
 

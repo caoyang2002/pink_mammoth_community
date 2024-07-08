@@ -1,8 +1,9 @@
-import { MyNFTs, NFTMinting, NFTDetails } from '@/src/components/NFT'
+import { NFTMinting, NFTDetails } from '@/src/components/NFT'
 import ChyrawLogo from '@/src/static/ChyrawLogo'
 // import Card from '@/src/comp/Card'
 import Pattner from '@/src/components/Pattner'
 import { Account, Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
+import MyNfts from '@/src/components/nft/MyNFTs'
 // import { useState } from 'react'
 // import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
 // export const metadata = {

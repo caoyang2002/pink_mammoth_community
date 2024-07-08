@@ -41,12 +41,12 @@ export default function Header() {
             工作
           </a>
           <a
-            href="/job"
+            href="/community"
             className="text-white text-lg hover:text-pink-600 transition duration-150 ease-in-out"
           >
-            工作
+            社区
           </a>
-          <Test />
+          {/* <Test /> */}
         </div>
         <div>{/* <WalletProvider /> */}</div>
 

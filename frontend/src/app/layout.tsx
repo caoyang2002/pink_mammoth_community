@@ -13,6 +13,13 @@ import Footer from '@/src/components/Footer'
 import { PetraWallet } from 'petra-plugin-wallet-adapter' // petra 钱包适配器插件
 import { AptosWalletAdapterProvider } from '@aptos-labs/wallet-adapter-react' // aptos 的钱包适配器 react 组件
 import React from 'react'
+import {
+  Aptos,
+  AptosConfig,
+  Network,
+  APTOS_COIN,
+  AccountAddressInput,
+} from '@aptos-labs/ts-sdk'
 
 const wallets = [new PetraWallet()]
 export default function RootLayout({ children }: PropsWithChildren) {
@@ -34,7 +41,14 @@ export default function RootLayout({ children }: PropsWithChildren) {
         />
       </head>
       <body className="grow">
-        <AptosWalletAdapterProvider plugins={wallets} autoConnect={true}>
+        <AptosWalletAdapterProvider
+          plugins={wallets}
+          autoConnect={true}
+          dappConfig={{
+            network: Network.TESTNET,
+            aptosConnectDappId: 'dapp-id',
+          }}
+        >
           <Header />
 
           {children}
