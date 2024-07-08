@@ -1,0 +1,42 @@
+.img-coming-soon {
+  position: relative;
+  width: 100%; /* 根据需要调整 */
+  height: 300px; /* 根据需要调整 */
+}
+
+.paint-effect {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../public/images/a.jpg') no-repeat top center;
+  background-size: cover;
+  animation: paintFlow 10s linear infinite;
+}
+
+@keyframes paintFlow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.img-coming-soon {
+  position: relative;
+  width: 100%; /* 根据需要调整 */
+  height: 300px; /* 根据需要调整 */
+  background-size: cover;
+  animation: paintFlow 10s linear infinite;
+}
+
+@keyframes paintFlow {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}

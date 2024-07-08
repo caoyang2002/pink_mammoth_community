@@ -1,32 +1,14 @@
-import './styles/style.css'
-import './styles/globals.css'
-import '@/src/app/styles/additional-styles/theme.css'
+'use client'
 
-import { Body } from '@/src/app/home/Body'
-import ClientOnly from '@/src/components/ClientOnly'
-import localFont from 'next/font/local'
+import Home from './Home'
+import React from 'react'
 
-export const metadata = {
-  title: 'Pink Mammoth',
-  description: 'we are web3 community',
-}
-
-const kongtext = localFont({
-  src: './../public/fonts/kongtext.ttf',
-  variable: '--font-kongtext',
-})
-
-export default function Home() {
+function App() {
   return (
     <>
-      <div className={kongtext.className}>
-        <div className="fnt-inter antialiased tracking-tight">
-          {/* flex min-h-screen flex-col items-center justify-between */}
-          <ClientOnly>
-            <Body />
-          </ClientOnly>
-        </div>
-      </div>
+      <Home />
     </>
   )
 }
+
+export default App

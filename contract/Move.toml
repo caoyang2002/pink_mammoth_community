@@ -1,15 +1,18 @@
 [package]
-name = "get_nft"
+name = "first_nft"
 version = "1.0.0"
 authors = []
 
 [addresses]
-
+pinkmammoth = "0xe425314b236c1a736a153e8a4e6715292212024b9e6ce601d91711a51cbc9a00"
 [dev-addresses]
 
-[dependencies.AptosFramework]
+[dependencies.AptosTokenObjects]
 git = "https://github.com/aptos-labs/aptos-core.git"
+#git = "https://gitee.com/WGB5445/aptos-core.git"
 rev = "mainnet"
-subdir = "aptos-move/framework/aptos-framework"
-
+subdir = "aptos-move/framework/aptos-token-objects"
 [dev-dependencies]
+
+# https://ipfs.io/ipfs/
+# QmT78tMNRnyThKJYeduFZuQwx2QWSHp4KH2Phduzsookxa/?filename=1.jpg

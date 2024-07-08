@@ -1180,5 +1180,11 @@ module.exports = {
       50: '50',
     },
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [
+    require('@tailwindcss/forms'),
+    // require('@headlessui/tailwindcss'),
+
+    // Or with a custom prefix:
+    require('@headlessui/tailwindcss')({ prefix: 'ui' }),
+  ],
 }

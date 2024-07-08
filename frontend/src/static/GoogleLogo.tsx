@@ -1,4 +1,4 @@
-function GoogleLogo() {
+const GoogleLogo: React.FC = () => {
   return (
     <svg
       width="24"
@@ -33,7 +33,7 @@ function GoogleLogo() {
         fill="#EA4335"
       />
     </svg>
-  );
+  )
 }
 
-export default GoogleLogo;
+export default GoogleLogo

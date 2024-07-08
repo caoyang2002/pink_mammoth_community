@@ -1,0 +1,149 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+
+/* Additional styles */
+/* @import 'additional-styles/utility-patterns.css';
+@import 'additional-styles/range-slider.css';
+@import 'additional-styles/toggle-switch.css';
+@import 'additional-styles/theme.css'; */
+
+@import 'tailwindcss/utilities';
+
+/* Additional Tailwind directives: https://tailwindcss.com/docs/functions-and-directives/#responsive */
+@layer utilities {
+    .rtl {
+        direction: rtl;
+    }
+}
+
+/* See Alpine.js: https://github.com/alpinejs/alpine#x-cloak */
+[x-cloak=""] {
+    display: none;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Typography */
+.h1 {
+    @apply text-4xl font-extrabold leading-tight tracking-tighter;
+}
+
+.h2 {
+    @apply text-3xl font-extrabold leading-tight tracking-tighter;
+}
+
+.h3 {
+    @apply text-3xl font-bold leading-tight;
+}
+
+.h4 {
+    @apply text-2xl font-bold leading-snug tracking-tight;
+}
+
+@screen md {
+    .h1 {
+        @apply text-5xl;
+    }
+
+    .h2 {
+        @apply text-4xl;
+    }
+}
+
+/* Buttons */
+.btn,
+.btn-sm {
+    @apply font-medium inline-flex items-center justify-center border border-transparent rounded-sm leading-snug transition duration-150 ease-in-out;
+}
+
+.btn {
+    @apply px-8 py-3;
+}
+
+.btn-sm {
+    @apply px-4 py-2;
+}
+
+/* Forms */
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox,
+.form-radio {
+    @apply bg-transparent border border-gray-700 focus:border-gray-500;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select,
+.form-checkbox {
+    @apply rounded-sm;
+}
+
+.form-input,
+.form-textarea,
+.form-multiselect,
+.form-select {
+    @apply py-3 px-4;
+}
+
+.form-input,
+.form-textarea {
+    @apply placeholder-gray-500;
+}
+
+.form-select {
+    @apply pr-10;
+}
+
+.form-checkbox,
+.form-radio {
+    @apply text-purple-600;
+}
+
+.scroll-container {
+  overflow-x: auto; 
+  overflow-y: hidden; 
+  white-space: nowrap; 
+  /* position: relative;  */
+  width: 100%;
+}
+
+.scroll-content {
+  display: flex;
+  width: max-content; 
+}
