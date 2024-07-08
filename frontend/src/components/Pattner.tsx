@@ -1,5 +1,5 @@
-import Card from '@/src/comp/Card'
-import clsx from 'clsx'
+// import Card from '@/src/comp/Card'
+// import clsx from 'clsx'
 
 const images = [
   'https://pbs.twimg.com/media/GEaqVEYaQAAnnQA?format=jpg&name=large',
@@ -25,7 +25,7 @@ const images = [
 
 // App.tsx
 // import React from 'react';
-import AutoScrollingContainer from '@/src/comp/AutoScrollingSVGCard'
+import AutoScrollingContainer from './AutoScrollingSVGCard'
 // import Logo from './Logo';
 // ...引入其他SVG组件
 import AppleLogo from '@/src/static/AppleLogo'

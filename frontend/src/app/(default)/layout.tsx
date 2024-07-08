@@ -4,7 +4,7 @@ import './styles/globals.css'
 // import '@/src/app/styles/additional-styles/theme.css'
 //--------------
 import { PropsWithChildren } from 'react'
-import { KeylessAccountProvider } from '@/src/context/KeylessAccountContext'
+// import { KeylessAccountProvider } from '@/src/context/KeylessAccountContext'
 import AOS from 'aos'
 import { useEffect } from 'react'
 import 'aos/dist/aos.css'
@@ -27,9 +27,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           content="Rnm3DL87HNmPncIFwBLXPhy-WGFDXIyplSL4fRtnFsA"
         />
       </head>
-      <body className="grow">
-        <KeylessAccountProvider>{children}</KeylessAccountProvider>
-      </body>
+      <body className="grow">{children}</body>
     </html>
   )
 }

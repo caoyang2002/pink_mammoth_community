@@ -3,7 +3,7 @@ import '@/src/styles/style.css'
 import '@/src/styles/globals.css'
 //--------------
 import { PropsWithChildren } from 'react'
-import { KeylessAccountProvider } from '@/src/context/KeylessAccountContext'
+// import { KeylessAccountProvider } from '@/src/context/KeylessAccountContext'
 import AOS from 'aos'
 import { useEffect } from 'react'
 import 'aos/dist/aos.css'

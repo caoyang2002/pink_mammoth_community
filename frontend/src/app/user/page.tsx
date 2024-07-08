@@ -1,10 +1,10 @@
 import { MyNFTs, NFTMinting, NFTDetails } from '@/src/components/NFT'
 import ChyrawLogo from '@/src/static/ChyrawLogo'
-import Card from '@/src/comp/Card'
+// import Card from '@/src/comp/Card'
 import Pattner from '@/src/components/Pattner'
 import { Account, Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
-import { useState } from 'react'
-import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
+// import { useState } from 'react'
+// import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
 // export const metadata = {
 //   title: 'Pink Mammoth',
 //   description: 'we are web3 community',
