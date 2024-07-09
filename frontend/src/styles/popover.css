@@ -1,0 +1,66 @@
+/* Popover 基本样式 */
+.popover {
+  position: fixed; /* 绝对定位相对于浏览器窗口 */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 300px; /* 最大宽度 */
+  padding: 20px;
+  border-radius: 0; /* 边框圆角 */
+
+  border: 3px solid #000000; /* 边框样式 */
+  background-color: white; /* 背景色 */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* 阴影 */
+  z-index: 1000; /* 确保弹窗在页面的最上层 */
+  /* font-family: Arial, sans-serif;  */
+}
+
+/* 弹窗头部样式 */
+.popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* 弹窗标题样式 */
+.popover-title {
+  font-size: 18px;
+  color: #333;
+}
+
+/* 弹窗关闭按钮样式 */
+.popover-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #f51919;
+  transition: color 0.3s; /* 平滑的颜色过渡效果 */
+}
+
+.popover-close:hover {
+  color: #666; /* 鼠标悬浮时的颜色变化 */
+}
+
+/* 弹窗内容区域样式 */
+.popover-body {
+  /* 根据需要添加内容样式 */
+  border-radius: 0;
+  border-radius: 0 0 0 5px;
+  border-top: none
+}
+
+/* 弹窗类别等级样式 */
+.popover-info {
+  border-left: 5px solid #007bff; /* 信息类别的颜色 */
+}
+.popover-success {
+  border-left: 5px solid #28a745; /* 成功类别的颜色 */
+}
+.popover-warning {
+  border-left: 5px solid #ffc107; /* 警告类别的颜色 */
+}
+.popover-error {
+  border-left: 5px solid #dc3545; /* 错误类别的颜色 */
+}

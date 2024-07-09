@@ -9,6 +9,7 @@ import React, { useEffect, useState } from 'react'
 // import { Popover, PopoverButton, PopoverPanel } from '@headlessui/react';
 import { SyntheticEvent } from 'react'
 import Account from './Account'
+import { useWallet } from '@aptos-labs/wallet-adapter-react'
 
 function Wallet() {
   // const [isOpen, setIsOpen] = useState(false)

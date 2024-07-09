@@ -1,7 +1,7 @@
 'use client'
 import '@/src/styles/style.css'
 import '@/src/styles/globals.css'
-//--------------
+import '@/src/styles/wallet.css'
 import { PropsWithChildren } from 'react'
 // import { KeylessAccountProvider } from '@/src/context/KeylessAccountContext'
 import AOS from 'aos'

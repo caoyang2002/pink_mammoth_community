@@ -15,9 +15,10 @@ import {
   InputTransactionData,
   useWallet,
 } from '@aptos-labs/wallet-adapter-react'
-import { AccountInfo } from '@aptos-labs/wallet-adapter-core'
+// import { AccountInfo } from '@aptos-labs/wallet-adapter-core'
 import { useEffect, useState } from 'react'
 import { Address } from 'cluster'
+import CopyToClipboard from 'react-copy-to-clipboard'
 // import testNFT from '../test-nft'
 //------------------
 
@@ -32,6 +33,7 @@ console.log('moduleAddress: ', moduleAddress)
 // 获取 NFT
 export default function QueryTokens() {
   console.log('开始获取 NFT')
+
   const { account } = useWallet() // 确保这里正确导入了 useWallet
 
   const [tokenInfo, setTokenInfo] = useState(Object)
@@ -159,6 +161,8 @@ export default function QueryTokens() {
         // collection 名字
         collectionName:
           token.current_token_data.current_collection.collection_name,
+        creatorAddress:
+          token.current_token_data.current_collection.creator_address,
         // token 描述
         description: token.current_token_data.current_collection.description,
         // 当前供应量
@@ -186,26 +190,43 @@ export default function QueryTokens() {
       <button onClick={handleQueryClick}>查询 NFT</button>
       {formattedTokens && formattedTokens.length > 0 && (
         <div>
-          <h2>查询结果：</h2>
+          <h2 className="text-2xl font-bold mb-4">查询结果：</h2>
           {formattedTokens.map((token: any, index: any) => (
-            <div key={index}>
-              <p>Collection ID: {token.collectionId}</p>
-              <p>Collection Name: {token.collectionName}</p>
-              <p>Token Description: {token.description}</p>
-              {/* <p>Current Supply: {token.currentSupply}</p> */}
-              <p>Token URI: {token.tokenUri}</p>
-              <p>Tokne Name: {token.tokenName}</p>
-              <p>Token Data ID: {token.tokenDataId}</p>
-              <p>Owner Address: {token.ownerAddress}</p> {/* 显示所有者地址 */}
-              <p>Amount: {token.amount}</p> {/* 显示数量 */}
-              <img
-                className="w-64 h-64" // 设置图片的宽度和高度
-                src={token.imageIpfsUrc} // 使用拼接后的链接
-                alt={token.description || 'NFT Image'} // 使用描述作为 alt 文本，或提供一个默认值
-              />
-              <p>
-                --------------------------------------------------------------
-              </p>
+            <div key={index} className="flex items-start justify-start mb-4">
+              <div className="mr-4">
+                <img
+                  className="w-64 h-64 object-cover"
+                  src={token.imageIpfsUrc}
+                  alt={token.description || 'NFT Image'}
+                />
+              </div>
+              <div className="text-left">
+                <p className="mb-1">Collection ID: {token.collectionId}</p>
+                <p className="mb-1">Collection Name: {token.collectionName}</p>
+                <p className="mb-1">Token Description: {token.description}</p>
+                <p className="mb-1">Token URI: {token.tokenUri}</p>
+                <p className="mb-1">Token Name: {token.tokenName}</p>
+                <p className="mb-1">Token Data ID: {token.tokenDataId}</p>
+                <p className="mb-1">Owner Address: {token.ownerAddress}</p>
+                <p className="mb-1">Amount: {token.amount}</p>
+                <p className="mb-1">Creator Address: {token.creatorAddress}</p>
+                {/* <div>
+                  <p className="mb-1">
+                    Owner Address: <span>{token.ownerAddress}</span>
+                  </p>
+                  <CopyToClipboard text={token.ownerAddress}>
+                    <button>复制地址</button>
+                  </CopyToClipboard>
+                </div> */}
+              </div>
+              <div className="text-left flex flex-col mb-1">
+                <a className="mb-4">联系</a>
+                <a className="mb-4">喜欢</a>
+                <a className="mb-4">收藏</a>
+                <a className="mb-4">购买</a>
+                <a className="mb-4">出售</a>
+                <a className="mb-0">查看</a>
+              </div>
             </div>
           ))}
         </div>

@@ -162,7 +162,7 @@ export default function MintNFT() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center w-full h-screen">
+    <div className="flex flex-col items-center justify-center w-full mt-0 pt-0 mb-0 pb-0">
       <input
         type="text"
         value={content} // 将输入框的值绑定到 content 状态

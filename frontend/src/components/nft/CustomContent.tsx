@@ -4,7 +4,12 @@ import {
   InputTransactionData,
   useWallet,
 } from '@aptos-labs/wallet-adapter-react'
-import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
+import {
+  Aptos,
+  AptosConfig,
+  InputViewFunctionData,
+  Network,
+} from '@aptos-labs/ts-sdk'
 
 //查询 token 地址
 
@@ -12,9 +17,10 @@ import { Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
 const aptosConfig = new AptosConfig({ network: Network.TESTNET })
 const aptos = new Aptos(aptosConfig)
 
-export default function BurnBFT() {
+export default function CustomContent() {
   const [tokenAddr, setTokenAddr] = useState('')
   const { account, signAndSubmitTransaction } = useWallet()
+  const [content, setContent] = useState('')
 
   // 处理铸造 NFT 的异步逻辑
   useEffect(() => {
@@ -37,19 +43,15 @@ export default function BurnBFT() {
 
     try {
       // 一个交易的数据信息
-      const transaction: InputTransactionData = {
-        data: {
-          function: `${process.env.NEXT_PUBLIC_NFT_MODULE_ADDRESS}::first_nft::burn`,
-          functionArguments: [tokenAddr],
-        },
+      const payload: InputViewFunctionData = {
+        function: `${process.env.NEXT_PUBLIC_NFT_MODULE_ADDRESS}::first_nft::get_content`,
+        functionArguments: [tokenAddr],
       }
 
-      // 提交交易并等待交易完成
-      const response = await signAndSubmitTransaction(transaction)
-      await aptos.waitForTransaction({ transactionHash: response.hash })
-      console.log('Transaction response:', response)
+      setContent((await aptos.view({ payload }))[0] as string)
+      console.log('content: ', content)
     } catch (error) {
-      console.error('Error minting NFT:', error)
+      console.error('Error view function:', error)
     }
   }
   // set token address
@@ -75,8 +77,8 @@ export default function BurnBFT() {
         onChange={handleInputChange} // 当输入框值变化时调用 handleInputChange
         placeholder="Enter Token Address"
       />
-
-      <button onClick={burn_nft}>Burn NFT</button>
+      <button onClick={burn_nft}>Custom Content</button>
+      <p>{content}</p>
       {/* 其他 UI 元素 */}
     </div>
   )
