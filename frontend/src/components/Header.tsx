@@ -11,8 +11,8 @@ import LanguageIcon from '../static/actionIcon/LanguageIcon'
 // 顶部导航栏
 export default function Header() {
   return (
-    <header className="fixed top-0 left-0 w-full z-30 bg-black">
-      <nav className="flex items-center  md:flex md:grow w-full bg-blue bg-opacity-100 p-4">
+    <header className="fixed top-0 left-0 w-full pt-0 mb-0 bg-black">
+      <nav className="flex items-center  md:flex md:grow w-full bg-blue bg-opacity-100 p-3">
         <div className="shrink-0 mr-4">
           <Link href="/" className="block" aria-label="back to home">
             <PinkMammothLogo />
