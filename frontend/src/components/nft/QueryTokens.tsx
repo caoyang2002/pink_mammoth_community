@@ -152,7 +152,7 @@ export default function QueryTokens() {
       const tokenUri = token.current_token_data.token_uri || ''
       console.log('token uri is:', tokenUri)
       const fullIpfsUrl = tokenUri.startsWith('ipfs:/')
-        ? `https://ipfs.io/ipfs${tokenUri.split('ipfs:/')[1]}`
+        ? `http://caoyang2002.top:8080/ipfs${tokenUri.split('ipfs:/')[1]}`
         : tokenUri // 如果没有 'ipfs/' 前缀，直接使用原始 URI
       console.log('the ipfs utl is :', fullIpfsUrl)
       return {

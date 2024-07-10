@@ -18,15 +18,14 @@ module pinkmammoth::first_nft {
     const ERROR_NOWNER: u64 = 1;
 
     const ResourceAccountSeed: vector<u8> = b"pink mammoth";
-    // https://ipfs.io/ipfs/QmT78tMNRnyThKJYeduFZuQwx2QWSHp4KH2Phduzsookxa/?filename=1.jpg logo
-    // https://ipfs.io/ipfs/QmT78tMNRnyThKJYeduFZuQwx2QWSHp4KH2Phduzsookxa/?filename=2-7.jpg token
+
     const CollectionDescription: vector<u8> = b"Where the wild world of NFTs comes alive in pink!";
 
     const CollectionName: vector<u8> = b"pink mammoth";
 
-    const CollectionURI: vector<u8> = b"ipfs://QmTUQF1kZ514ZihgEexh2hg4HxhpN7oMtMmmGCiQwDsQPB";
+    const CollectionURI: vector<u8> = b"ipfs://QmPabLPoqybiinoyLXbLU2EW1B4hyd6d5FzoheoXcEfFP3";
 
-    const TokenURI: vector<u8> = b"ipfs://QmT78tMNRnyThKJYeduFZuQwx2QWSHp4KH2Phduzsookxa/";
+    const TokenURI: vector<u8> = b"ipfs://QmTLwSA7qhtNAsem7qrDScmmCaCCUnutXHWbVsVHFvSuc8/";
 
     const TokenPrefix: vector<u8> = b"pink #";
 
@@ -47,6 +46,11 @@ module pinkmammoth::first_nft {
 
     struct Content has key {
         content: string::String
+    }
+
+    // NFT price
+    struct Price has key {
+        price: u64
     }
 
     #[event]
@@ -225,6 +229,13 @@ module pinkmammoth::first_nft {
         );
         borrow_mut_content(signer::address_of(sender), object).content = content;
     }
+
+    #[view]
+    public fun get_price(token_address: address):u64{
+        //TODO
+    }
+
+    inline fun borrow_price(owner:address,)
 
     #[view]
     public fun get_content(object: Object<Content>): string::String acquires Content {
