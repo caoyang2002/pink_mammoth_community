@@ -14,7 +14,7 @@ import {
   InputTransactionData,
   useWallet,
 } from '@aptos-labs/wallet-adapter-react'
-import { AccountInfo } from '@aptos-labs/wallet-adapter-core'
+// import { AccountInfo } from '@aptos-labs/wallet-adapter-core'
 import { useEffect, useState } from 'react'
 import { Address } from 'cluster'
 // import testNFT from '../test-nft'

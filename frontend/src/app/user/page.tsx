@@ -3,7 +3,7 @@ import ChyrawLogo from '@/src/static/ChyrawLogo'
 // import Card from '@/src/comp/Card'
 import Pattner from '@/src/components/Pattner'
 import { Account, Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
-import MyNfts from '@/src/components/nft/MyNFTs'
+// import MyNfts from '@/src/components/nft/MyNFTs'
 // import { useState } from 'react'
 // import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
 // export const metadata = {
@@ -49,7 +49,7 @@ export default function User() {
 
       <div className="pt-16">
         {/* <button onClick={getCoin}></button> */}
-        <MyNFTs />
+        {/* <MyNFTs /> */}
         <NFTMinting />
         <NFTDetails />
         <Pattner />

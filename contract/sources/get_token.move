@@ -8,6 +8,7 @@ module pinkmammoth::first_nft {
     use aptos_framework::event;
     use aptos_framework::object;
     use aptos_framework::object::Object;
+    use aptos_framework::randomness;
 
     use aptos_token_objects::collection;
     use aptos_token_objects::royalty;
@@ -28,6 +29,7 @@ module pinkmammoth::first_nft {
     const TokenURI: vector<u8> = b"ipfs://QmTLwSA7qhtNAsem7qrDScmmCaCCUnutXHWbVsVHFvSuc8/";
 
     const TokenPrefix: vector<u8> = b"pink #";
+    const MAX_TOKEN_AMOUNT:u64 = 110;
 
     struct ResourceCap has key {
         cap: SignerCapability
@@ -44,7 +46,7 @@ module pinkmammoth::first_nft {
         transfer_ref: option::Option<object::TransferRef>
     }
 
-    struct Content has key {
+    struct Description has key {
         content: string::String
     }
 
@@ -61,7 +63,7 @@ module pinkmammoth::first_nft {
     }
 
     #[event]
-    struct SetContentEvent has drop, store {
+    struct SetDescriptionEvent has drop, store {
         owner: address,
         token_id: address,
         old_content: string::String,
@@ -123,6 +125,7 @@ module pinkmammoth::first_nft {
         let resource_signer = &account::create_signer_with_capability(
             resource_cap
         );
+        // ipfs://QmTLwSA7qhtNAsem7qrDScmmCaCCUnutXHWbVsVHFvSuc8/
         let url = string::utf8(TokenURI);
 
         let token_cref = token::create_numbered_token(
@@ -134,10 +137,14 @@ module pinkmammoth::first_nft {
             option::none(),
             string::utf8(b""),
         );
+        // b"ipfs://QmTLwSA7qhtNAsem7qrDScmmCaCCUnutXHWbVsVHFvSuc8/ + index + .png
 
         let id = token::index<Token>(object::object_from_constructor_ref(&token_cref));
+        if (id > MAX_TOKEN_AMOUNT){
+            id = (randomness::u8_range(0,111) as u64);
+        };
         string::append(&mut url, string_utils::to_string(&id));
-        string::append(&mut url, string::utf8(b".jpg"));
+        string::append(&mut url, string::utf8(b".png"));
 
         let token_signer = object::generate_signer(&token_cref);
 
@@ -165,7 +172,7 @@ module pinkmammoth::first_nft {
 
         move_to(
             &token_signer,
-            Content {
+            Description {
                 content
             }
         );
@@ -188,8 +195,8 @@ module pinkmammoth::first_nft {
 
     entry fun burn(
         sender: &signer,
-        object: Object<Content>
-    ) acquires TokenRefsStore, Content {
+        object: Object<Description>
+    ) acquires TokenRefsStore, Description {
         assert!(object::is_owner(object, signer::address_of(sender)), ERROR_NOWNER);
         let TokenRefsStore {
             mutator_ref: _,
@@ -198,9 +205,9 @@ module pinkmammoth::first_nft {
             transfer_ref: _
         } = move_from<TokenRefsStore>(object::object_address(&object));
 
-        let Content {
+        let Description {
             content
-        } = move_from<Content>(object::object_address(&object));
+        } = move_from<Description>(object::object_address(&object));
 
         event::emit(
             BurnEvent {
@@ -215,12 +222,12 @@ module pinkmammoth::first_nft {
 
     entry fun set_content(
         sender: &signer,
-        object: Object<Content>,
+        object: Object<Description>,
         content: string::String
-    ) acquires Content {
+    ) acquires Description {
         let old_content = borrow_content(signer::address_of(sender), object).content;
         event::emit(
-            SetContentEvent {
+            SetDescriptionEvent {
                 owner: object::owner(object),
                 token_id: object::object_address(&object),
                 old_content,
@@ -233,23 +240,27 @@ module pinkmammoth::first_nft {
     #[view]
     public fun get_price(token_address: address):u64{
         //TODO
+
+
     }
 
-    inline fun borrow_price(owner:address,)
+    inline fun borrow_price(owner:address):u64{
+
+    }
 
     #[view]
-    public fun get_content(object: Object<Content>): string::String acquires Content {
-        borrow_global<Content>(object::object_address(&object)).content
+    public fun get_content(object: Object<Description>): string::String acquires Description {
+        borrow_global<Description>(object::object_address(&object)).content
     }
 
-    inline fun borrow_content(owner: address, object: Object<Content>): &Content {
+    inline fun borrow_content(owner: address, object: Object<Description>): &Description {
         assert!(object::is_owner(object, owner), ERROR_NOWNER);
-        borrow_global<Content>(object::object_address(&object))
+        borrow_global<Description>(object::object_address(&object))
     }
 
-    inline fun borrow_mut_content(owner: address, object: Object<Content>): &mut Content {
+    inline fun borrow_mut_content(owner: address, object: Object<Description>): &mut Description {
         assert!(object::is_owner(object, owner), ERROR_NOWNER);
-        borrow_global_mut<Content>(object::object_address(&object))
+        borrow_global_mut<Description>(object::object_address(&object))
     }
 
     #[test_only]

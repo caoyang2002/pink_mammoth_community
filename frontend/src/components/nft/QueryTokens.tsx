@@ -18,7 +18,7 @@ import {
 // import { AccountInfo } from '@aptos-labs/wallet-adapter-core'
 import { useEffect, useState } from 'react'
 import { Address } from 'cluster'
-import CopyToClipboard from 'react-copy-to-clipboard'
+// import CopyToClipboard from 'react-copy-to-clipboard'
 // import testNFT from '../test-nft'
 //------------------
 
