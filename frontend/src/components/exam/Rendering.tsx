@@ -1,55 +1,27 @@
 'use client'
 import React, { useState, useEffect } from 'react'
 import GetMeta from './GetMeta'
-import GetAnswers from './GetAnswers'
+import { Answer, GetAnswerArray } from './GetAnswers'
 import GetQuestions, { GetQuestionsAmount, QuestionType } from './GetQuestions'
 //@ts-ignore
 import * as yaml from 'js-yaml'
 import {
   SingleChoiceQuestions,
   MultipleChoiceQuestions,
-  DefaultQuestions,
-  SingleChoiceQuestionsProps,
+  ToFQuestions,
 } from './ShowQuestions'
 import { Question } from './GetQuestions'
 import { GetQuestionCategory } from './GetQuestions'
 
-const questions = [
-  {
-    type: 'single',
-    question: '什么是Web3？',
-    options: [
-      '一种新的互联网协议',
-      '一个去中心化的应用程序平台',
-      '一种加密货币',
-      '以上都不是',
-    ],
-    answer: 'E',
-  },
-  // ... 其他题目
-]
-
-// const answers = [
-//   'E',
-//   'E',
-//   'E',
-//   'E',
-//   'B',
-//   'E',
-//   'A',
-//   'A',
-//   'A',
-//   // ... 其他答案
-// ]
-
 const Rendering = () => {
   const [fileContent, setFileContent] = useState<string>('')
-  const [answers, setAnswers] = useState<string>('')
+  const [answers, setAnswers] = useState<Answer[]>([])
   const [meta, setMeta] = useState<string>('')
   const [question, setQuestions] = useState<Question[]>([])
   const [showAnswers, setShowAnswers] = useState(false)
   const [questionCategory, setQuestionCategory] = useState<string[]>([])
   const [questionAmount, setQuestionAmount] = useState<QuestionType[]>([])
+
   useEffect(() => {
     const loadFile = async () => {
       // 假设你想获取的文件名是 "example.txt"
@@ -64,7 +36,7 @@ const Rendering = () => {
 
         if (data) {
           setMeta(GetMeta(data))
-          setAnswers(GetAnswers(data))
+          setAnswers(GetAnswerArray(data))
           setQuestions(GetQuestions(data))
           setQuestionCategory(GetQuestionCategory(data))
           setQuestionAmount(GetQuestionsAmount(data))
@@ -103,7 +75,6 @@ const Rendering = () => {
 
                 {metaData.part_score.map((part: any, index: any) => (
                   <div key={index}>
-                    <p>{part[0]}</p>
                     <div>
                       {/* <p>{part.section}</p> */}
                       {
@@ -111,25 +82,56 @@ const Rendering = () => {
 
                         // 根据 part.section 的值来决定渲染什么内容
                         part.section === '一、单选题' ? (
-                          <SingleChoiceQuestions
-                            question={question.map((data) => {
-                              return {
-                                title: data.title,
-                                options: data.options,
-                              }
-                            })}
-                            amount={questionAmount.map((data) => {
-                              // console.log('amount', data.amount)
-                              return data.amount
-                            })}
-                          />
-                        ) : // <p>{questionCategory[0]}</p>
-                        // <SingleChoiceQuestions questions={question} />
-                        part.section === '二、多选题' ? (
-                          <MultipleChoiceQuestions partDetails={part} />
+                          <>
+                            {' '}
+                            <p>{part.section}</p>
+                            <SingleChoiceQuestions
+                              question={question.map((data) => {
+                                return {
+                                  title: data.title,
+                                  options: data.options,
+                                }
+                              })}
+                              amount={questionAmount.map((data) => {
+                                // console.log('amount', data.amount)
+                                return data.amount
+                              })}
+                            />
+                          </>
+                        ) : part.section === '二、多选题' ? (
+                          <>
+                            <p>{part.section}</p>
+                            <MultipleChoiceQuestions
+                              question={question.map((data) => {
+                                return {
+                                  title: data.title,
+                                  options: data.options,
+                                }
+                              })}
+                              amount={questionAmount.map((data) => {
+                                // console.log('amount', data.amount)
+                                return data.amount
+                              })}
+                            />
+                          </>
+                        ) : part.section === '三、判断题' ? (
+                          <>
+                            <p>{part.section}</p>
+                            <ToFQuestions
+                              question={question.map((data) => {
+                                return {
+                                  title: data.title,
+                                  options: data.options,
+                                }
+                              })}
+                              amount={questionAmount.map((data) => {
+                                // console.log('amount', data.amount)
+                                return data.amount
+                              })}
+                            />
+                          </>
                         ) : (
-                          // 默认情况下渲染的内容
-                          <DefaultQuestions partDetails={part} />
+                          <p>ERROR</p>
                         )
                       }
                     </div>
@@ -150,14 +152,23 @@ const Rendering = () => {
   // 渲染答案
   const renderAnswers = () => {
     return (
-      <div>
+      <div className="bg-gray ">
         <h2>答案</h2>
-        {questions.map((question, index) => (
-          <div key={index}>
-            {question.question}
-            {answers[index] === '正确' ? '√' : 'x'}
-          </div>
-        ))}
+
+        {question.map((questionData, questionIndex) => {
+          const answer = answers.find((a) => a.sort === questionIndex + 1)
+
+          return (
+            <div key={questionIndex}>
+              {questionData.title}
+              {answer ? (
+                <p>答案：{answer.option.join(', ')}</p>
+              ) : (
+                <p>暂无答案</p>
+              )}
+            </div>
+          )
+        })}
       </div>
     )
   }

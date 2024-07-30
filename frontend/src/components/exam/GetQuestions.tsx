@@ -37,7 +37,9 @@ function GetAllQuestionClass(content: string): string[] {
   // console.log('sections:', questionClass)
   return questionClass
 }
-
+/**
+ * {title:string,option:string[]}
+ */
 export interface Question {
   title: string
   options: string[]
@@ -120,6 +122,7 @@ export function GetQuestionsAmount(content: string): QuestionType[] {
       lastIndex = currentIndex + currentMatch.length
     }
   }
+  console.log('amount:', result)
 
   return result
 }
