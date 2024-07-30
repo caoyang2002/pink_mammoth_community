@@ -50,8 +50,8 @@ export default function RootLayout({ children }: PropsWithChildren) {
           }}
         >
           <Header />
+          <div className="mt-16">{children}</div>
 
-          {children}
           <Footer />
         </AptosWalletAdapterProvider>
       </body>
