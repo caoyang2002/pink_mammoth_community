@@ -1,6 +1,5 @@
 'use client'
 import VideoThumb from '@/src/public/images/hero-image-01.jpg'
-// import ModalVideo from '@/src/components/modal-video'
 
 // 这是默认显示的页面
 export default function Start() {
@@ -39,26 +38,8 @@ export default function Start() {
                   <p>开始</p>
                 </a>
               </div>
-              {/* <div data-aos="fade-up" data-aos-delay="600">
-                <a
-                  className="btn text-white bg-gray-700 hover:bg-gray-800 w-full sm:w-auto sm:ml-4"
-                  href="#0"
-                >
-                  开始学习
-                </a>
-              </div> */}
             </div>
           </div>
-          {/* 
-          <ModalVideo
-            thumb={VideoThumb}
-            thumbWidth={1024}
-            thumbHeight={576}
-            thumbAlt="Modal video thumbnail"
-            video="/videos/video.mp4"
-            videoWidth={1920}
-            videoHeight={1080}
-          /> */}
         </div>
       </div>
     </section>

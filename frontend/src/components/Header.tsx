@@ -29,31 +29,15 @@ export default function Header() {
             <p>学习</p>
           </a>
           <a
-            href="/nft"
+            href="/exam"
             className="text-white text-lg hover:text-pink-600 transition duration-150 ease-in-out"
           >
-            <p>NFT</p>
+            <p>测试</p>
           </a>
-          <a
-            href="/job"
-            className="text-white text-lg hover:text-pink-600 transition duration-150 ease-in-out"
-          >
-            工作
-          </a>
-          <a
-            href="/community"
-            className="text-white text-lg hover:text-pink-600 transition duration-150 ease-in-out"
-          >
-            社区
-          </a>
-          {/* <Test /> */}
         </div>
-        <div>{/* <WalletProvider /> */}</div>
 
         <div className="flex items-center justify-end grow mr-16">
           <Wallet />
-
-          {/* <WalletSelector /> */}
         </div>
         <div className="flex items-center justify-end  mr-4">
           <LanguageIcon />
