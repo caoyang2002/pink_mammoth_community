@@ -2,6 +2,7 @@ module pinkmammoth::first_nft {
     use std::option;
     use std::signer;
     use std::string;
+    use aptos_std::debug;
     use aptos_std::string_utils;
     use aptos_framework::account;
     use aptos_framework::account::SignerCapability;
@@ -51,9 +52,9 @@ module pinkmammoth::first_nft {
     }
 
     // NFT price
-    struct Price has key {
-        price: u64
-    }
+    // struct Price has key {
+    //     price: u64
+    // }
 
     #[event]
     struct MintEvent has drop, store {
@@ -111,7 +112,15 @@ module pinkmammoth::first_nft {
         );
     }
 
-    entry public fun mint(
+    #[randomness]
+    entry fun mint(
+        sender: &signer,
+        content: string::String
+    ) acquires ResourceCap {
+        fatch_nft(sender,content)
+    }
+
+     fun fatch_nft(
         sender: &signer,
         content: string::String
     ) acquires ResourceCap {
@@ -141,7 +150,9 @@ module pinkmammoth::first_nft {
 
         let id = token::index<Token>(object::object_from_constructor_ref(&token_cref));
         if (id > MAX_TOKEN_AMOUNT){
-            id = (randomness::u8_range(0,111) as u64);
+            // [0,111)
+            id = randomness::u64_range(0,111);
+            debug::print(&id)
         };
         string::append(&mut url, string_utils::to_string(&id));
         string::append(&mut url, string::utf8(b".png"));
@@ -237,16 +248,13 @@ module pinkmammoth::first_nft {
         borrow_mut_content(signer::address_of(sender), object).content = content;
     }
 
-    #[view]
-    public fun get_price(token_address: address):u64{
-        //TODO
+    // #[view]
+    // public fun get_price(token_address: address):u64{
+    //     //TODO
+    // }
 
-
-    }
-
-    inline fun borrow_price(owner:address):u64{
-
-    }
+    // inline fun borrow_price(owner:address):u64{
+    // }
 
     #[view]
     public fun get_content(object: Object<Description>): string::String acquires Description {
@@ -263,8 +271,93 @@ module pinkmammoth::first_nft {
         borrow_global_mut<Description>(object::object_address(&object))
     }
 
-    #[test_only]
-    public fun init_for_test(sender: &signer) {
-        init_module(sender)
+
+    // #[test_only]
+    // public fun init_for_test(sender: &signer) {
+    //     init_module(sender)
+    // }
+//     #[test(sender=@pinkmammoth)]
+//     fun test_mint(sender:&signer) acquires ResourceCap {
+//         debug::print(&string::utf8(b"test"));
+//         init_module(sender);
+//         let content = string::utf8(b"coustom string");
+//
+//         mint(sender,content)
+//     }
+
+
+
+
+
+
+    // ------------------------
+    struct Mint_Obj{
+        mint_id:vector<u8>
     }
+    fun vec(vec:vector<u8>){
+        let obj = Mint_Obj{
+            mint_id:vec,
+        };
+        debug::print(&obj.mint_id);
+
+
+    }
+
+    // // ------------------
+    // struct Foo has drop{ x: u64, y: bool }
+    //
+    // #[test]
+    // fun example() {
+    //
+    //
+    //     let foo = Foo { x: 3, y: true };
+    //     // debug::print_stack_trace();
+    //     let foo_ref: &Foo = &foo;
+    //     let _y: bool = foo_ref.y;          // reading a field via a reference to the struct
+    //     let x_ref: &u64 = &foo.x;
+    //     // debug::print_stack_trace();
+    //
+    //     debug::print(x_ref); // success
+    //
+    //     // debug::print_stack_trace();
+    //     let x_ref_mut: &mut u64 = &mut foo.x;
+    //     // debug::print_stack_trace();
+    //     // debug::print(x_ref); // success
+    //     *x_ref_mut = 42;            // modifying a field via a mutable reference
+    //     x_ref = freeze(x_ref_mut);
+    //
+    //     // debug::print_stack_trace();
+    //     debug::print(x_ref); // error
+    //     // debug::print_stack_trace();
+    //     debug::print(x_ref_mut); // sucess
+    //     // debug::print_stack_trace();
+    // }
+
+    // --------------------------
+    // #[test]
+    // fun sum(){
+    //     let sum = 0;
+    //     let n = 10;
+    //     // let i = 0;
+    //     for (i in 0..n) {
+    //         sum = sum + i;
+    //         debug::print(&i);
+    //     };
+    //     //----------------
+    //     let foo = Foo {
+    //         x: 3,
+    //         y: true
+    //     };
+    //     let foo_ref: &Foo = &foo;
+    //     let y: bool = foo_ref.y;          // reading a field via a reference to the struct
+    //     // debug::print(&y);
+    //     let x_ref: &u64 = &foo.x;
+    //     debug::print(x_ref);
+    //     let x_ref_mut: &mut u64 = &mut foo.x;
+    //     *x_ref_mut = 42;            // modifying a field via a mutable reference
+    //
+    //     // debug::print(x_ref);
+    //     // debug::print(x_ref_mut);
+    // }
+
 }
