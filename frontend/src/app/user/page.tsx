@@ -1,39 +1,40 @@
-import { NFTMinting, NFTDetails } from '@/src/components/NFT'
+import { MyNFTs, NFTMinting, NFTDetails } from '@/src/components/NFT'
+import Footer from '@/src/components/Footer'
+import Header from '@/src/components/Header'
 import ChyrawLogo from '@/src/static/ChyrawLogo'
-// import Card from '@/src/comp/Card'
+import {
+  Account,
+  AccountAddress,
+  Aptos,
+  AptosConfig,
+  Network,
+} from '@aptos-labs/ts-sdk'
+import { useState } from 'react'
 import Pattner from '@/src/components/Pattner'
-import { Account, Aptos, AptosConfig, Network } from '@aptos-labs/ts-sdk'
-// import MyNfts from '@/src/components/nft/MyNFTs'
-// import { useState } from 'react'
-// import { useKeylessAccount } from '@/src/context/KeylessAccountContext'
-// export const metadata = {
-//   title: 'Pink Mammoth',
-//   description: 'we are web3 community',
-// }
+
 const config = new AptosConfig({ network: Network.TESTNET })
 const aptos = new Aptos(config)
-// const { keylessAccount, setKeylessAccount } = useKeylessAccount()
 
-// async function getAccount() {
-//   // 如果有 address
-//   if (keylessAccount) {
-//     const tokens = await aptos.getAccountOwnedTokens({
-//       accountAddress: `${keylessAccount.accountAddress.toString()}`,
-//     })
-//   }
-// }
+async function getAccount() {
+  // 如果有 address
+  if (AccountAddress) {
+    const tokens = await aptos.getAccountOwnedTokens({
+      accountAddress: `${AccountAddress.toString()}`,
+    })
+  }
+}
 
-// async function getCoin() {
-//   type Coin = { coin: { value: string } }
-//   if (keylessAccount) {
-//     const resource = await aptos.getAccountResource<Coin>({
-//       accountAddress: `${keylessAccount}`,
-//       resourceType: '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>',
-//     })
-//     // Now you have access to the response type property
-//     const value = resource.coin.value
-//   }
-// }
+async function getCoin() {
+  type Coin = { coin: { value: string } }
+  if (AccountAddress) {
+    const resource = await aptos.getAccountResource<Coin>({
+      accountAddress: `${AccountAddress}`,
+      resourceType: '0x1::coin::CoinStore<0x1::aptos_coin::AptosCoin>',
+    })
+    // Now you have access to the response type property
+    const value = resource.coin.value
+  }
+}
 
 export default function User() {
   // Setup the client
@@ -45,15 +46,16 @@ export default function User() {
   ]
   return (
     <>
-      {/* <Header /> */}
+      <Header />
 
       <div className="pt-16">
-        {/* <button onClick={getCoin}></button> */}
-        {/* <MyNFTs /> */}
+        <button onClick={getCoin}></button>
+
+        <MyNFTs />
         <NFTMinting />
         <NFTDetails />
         <Pattner />
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   )

@@ -12,6 +12,7 @@ import {
 } from './ShowQuestions'
 import { Question } from './GetQuestions'
 import { GetQuestionCategory } from './GetQuestions'
+import Popover from '../ui/Popover'
 
 const Rendering = () => {
   const [fileContent, setFileContent] = useState<string>('')
@@ -177,12 +178,26 @@ const Rendering = () => {
   const handleFinish = () => {
     setShowAnswers(true)
   }
-
+  const handleCheck = () => {
+    setShowAnswers(false)
+  }
   return (
     <div>
       {renderQuestionAndMeta()}
       {/* {questions.map(renderQuestion)} */}
-      <button onClick={handleFinish}>完成答题</button>
+      <Popover
+        level="info"
+        content="开始答题"
+        onClose={handleCheck}
+        // autoClose={true} // 设置为 true 表示自动关闭
+        closeDelay={5000} // 设置为 5 秒后自动关闭
+      />
+      <button
+        className="border-2 pt-1 pd-1 pl-1 pr-1 hover:bg-pink-300 hover:text-black"
+        onClick={handleFinish}
+      >
+        完成答题
+      </button>
       {showAnswers && renderAnswers()}
     </div>
   )

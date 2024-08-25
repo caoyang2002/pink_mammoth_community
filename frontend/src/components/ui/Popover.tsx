@@ -1,62 +1,7 @@
-// import React, { useEffect, useState } from 'react'
 import '@/src/styles/popover.css'
-
-// interface PopoverProps {
-//   level: 'info' | 'success' | 'warning' | 'error'
-//   content: React.ReactNode
-//   onClose: () => void
-//   autoClose: boolean
-//   closeDelay: number // 只在 autoClose 为 true 时使用
-// }
-
-// const Popover: React.FC<PopoverProps> = ({
-//   level,
-//   content,
-//   onClose,
-//   autoClose,
-//   closeDelay,
-// }) => {
-//   const [isVisible, setIsVisible] = useState(true)
-
-//   useEffect(() => {
-//     // 只在 autoClose 为 true 时设置定时器
-//     if (autoClose && isVisible) {
-//       const timer = setTimeout(() => {
-//         setIsVisible(false)
-//         onClose() // 调用 onClose 回调函数
-//       }, closeDelay)
-
-//       return () => clearTimeout(timer) // 组件卸载时清除定时器
-//     }
-//   }, [autoClose, isVisible, closeDelay])
-
-//   if (!isVisible) return null // 如果不可见，则不渲染弹窗
-
-//   const className = `popover popover-${level}`
-
-//   const handleClose = () => {
-//     setIsVisible(false)
-//     onClose() // 调用 onClose 回调函数
-//   }
-
-//   return (
-//     <div className={className}>
-//       <div className="popover-header">
-//         <span className="popover-title">消息</span>
-//         <button className="popover-close" onClick={handleClose}>
-//           &times;
-//         </button>
-//       </div>
-//       <div className="popover-body">{content}</div>
-//     </div>
-//   )
-// }
-
-// export default Popover
 
 import React, { useState, useEffect } from 'react'
 
-// Popover 组件的属性接口
 interface PopoverProps {
   level: 'info' | 'success' | 'warning' | 'error'
   content: React.ReactNode
@@ -105,7 +50,7 @@ const Popover: React.FC<PopoverProps> = ({
           </button>
         )}
       </div>
-      <div className="popover-body">{content}</div>
+      <div className="popover-body text-black">{content}</div>
     </div>
   )
 }

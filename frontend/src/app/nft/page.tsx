@@ -12,6 +12,8 @@ import Popover from '@/src/components/ui/Popover'
 import { useState } from 'react'
 import CustomContent from '@/src/components/nft/CustomContent'
 import MatrixRain from '@/src/components/effector/MatrixRain'
+import Photobox from '@/src/components/ui/InfiniteSliding'
+import ImageList from '@/src/static/images/ImageList'
 export default function NFT() {
   // 处理关闭弹窗的函数
   const handleClosePopover = () => {
@@ -20,6 +22,8 @@ export default function NFT() {
   return (
     <>
       <div className="pt-16 flex flex-col items-center justify-center gap-10">
+        <ImageList />
+        <Photobox />
         <Typewriter originalText="欢迎来到 NFT 世界" destination="/" />
         {/* <AptosLogo /> */}
         <CustomContent />

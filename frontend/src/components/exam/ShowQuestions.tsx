@@ -17,13 +17,13 @@ export const SingleChoiceQuestions: React.FC<SingleChoiceQuestionsProps> = ({
   amount,
 }) => {
   const limitedQuestions = question.slice(0, amount[0])
-  const [userAnswers, setAnswers] = useState<UserAnswer[]>([])
+  const [userAnswers, setUserAnswers] = useState<UserAnswer[]>([])
 
   const handleOptionChange = (
     questionTitle: string,
     selectedOption: string
   ) => {
-    setAnswers((prevAnswers) => {
+    setUserAnswers((prevAnswers) => {
       const existingAnswerIndex = prevAnswers.findIndex(
         (a) => a.title === questionTitle
       )
